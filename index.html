@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+        <script src="https://kit.fontawesome.com/0fb81c7629.js" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="style.css" /> -->
+    
+        <title>Pokedex</title>
+        <link rel="icon" type="image/x-icon" href="/imgs/logo/pokeball.png">
+    </head>
+    <body>
+        <!-- HEADER SECTION -->
+
+        <header>
+            <main style="
+                background-color: #292929;
+                height: 100vh;
+            ">
+                <nav class="navbar navbar-dark bg-dark" aria-label="Dark offcanvas navbar">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#"><img src="imgs/logo/pokeball.png"
+                                class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="50" height="50"
+                                loading="lazy" />
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                </nav>
+
+                <div class="container-fluid col-xxl-10 px-4 py-5">
+                    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                        <div class="col-10 col-sm-8 col-lg-6">
+                            <img src="imgs/backgrounds/main-screen/rayquaza.svg" class="d-block mx-lg-auto img-fluid"
+                                alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+                        </div>
+                        <div class="col-lg-6">
+                            <h1 id="header-text" class="display-5 text-white fw-bold lh-1 mb-3">Choose your favorite
+                                pokemon
+                                and join the
+                                battle!</h1>
+                            <p class="lead text-white-50 lh-1">Explore through all generations and get informations
+                                about the pokemons to be
+                                prepared for the battle!</p>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                                <a href="#aboutSection" class="btn btn-outline-light btn-lg px-4 me-md-2" type="button">Get
+                                    Started</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </header>
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
+        style="--bs-offcanvas-width: 100%; transition: 0.3s; background-color: #292929;">
+        <button type="button" class="btn-close text-white m-5" data-bs-dismiss="offcanvas" aria-label="Close"><i
+                class="fa-solid fa-xmark fa-2x"></i></button>
+        <div class="offcanvas-header justify-content-center">
+            <h1 class="offcanvas-title text-center text-white" id="offcanvasRightLabel"><strong>POKEMON GENDER RATE</strong>
+            </h1>
+        </div>
+        <div class="offcanvas-body">
+            <div class="gender-rate-buttons-container" id="gender-rate-container" style="text-decoration: none;">
+                <!-- Gender rate buttons will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT SECTION -->
+
+    <div class="container-fluid py-4" id="aboutSection">
+        <div class="container">
+            <div class="p-5 mb-4 bg-light rounded-3">
+                <div class="container-fluid py-5">
+                    <h1 class="display-5 fw-bold">About the project</h1>
+                    <p class="col-md-8 fs-4">Hi! My name is yosua and I'm a indonesia Developer🌞. <br>
+                        In this project I bring to you a pokedex website, where you can get some informations about
+                        Pokemon.</p>
+                    <a href="#" class="btn btn-outline-dark btn-lg"
+                        type="button">Check out the GitHub project</a>
+                </div>
+            </div>
+
+            <div class="container px-4 py-5" id="custom-cards">
+                <h2 class="pb-2 border-bottom">Technologies used</h2>
+
+                <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+                    <div class="col">
+                        <div class="card card-cover h-100 overflow-hidden text-white rounded-4 shadow-lg"
+                            style="background-color: #E34F26;">
+                            <div
+                                class="d-flex flex-column h-100 p-5 pb-3 text-white justify-content-center text-center text-shadow-1">
+                                <h2><i class="fa-brands fa-html5 fa-5x"></i></h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card card-cover h-100 overflow-hidden text-white rounded-4 shadow-lg"
+                            style="background-color: #1572B6;">
+                            <div
+                                class="d-flex flex-column h-100 p-5 pb-3 text-white justify-content-center text-center text-shadow-1">
+                                <h2><i class="fa-brands fa-css3-alt fa-5x"></i></h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card card-cover h-100 overflow-hidden text-white rounded-4 shadow-lg"
+                            style="background-color: #F7DF1E;">
+                            <div
+                                class="d-flex flex-column h-100 p-5 pb-3 text-center justify-content-center text-shadow-1">
+                                <h2><i class="fa-brands fa-js fa-5x"></i></h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card card-cover h-100 overflow-hidden text-white rounded-4 shadow-lg"
+                            style="background-color: #F05032;">
+                            <div
+                                class="d-flex flex-column h-100 p-5 pb-3 text-white justify-content-center text-center text-shadow-1">
+                                <h2><i class="fa-brands fa-git-alt fa-5x"></i></h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card card-cover h-100 overflow-hidden text-white rounded-4 shadow-lg"
+                            style="background-color: #181717;">
+                            <div
+                                class="d-flex flex-column h-100 p-5 pb-3 text-white justify-content-center text-center text-shadow-1">
+                                <h2><i class="fa-brands fa-github-square fa-5x"></i></h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card card-cover h-100 overflow-hidden text-white rounded-4 shadow-lg"
+                            style="background-color: #F24E1E;">
+                            <div
+                                class="d-flex flex-column h-100 p-5 pb-3 text-center justify-content-center text-shadow-1">
+                                <h2><i class="fa-brands fa-figma fa-5x"></i></h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card card-cover h-100 overflow-hidden text-white rounded-4 shadow-lg"
+                            style="background-color: #7E0AF9;">
+                            <div
+                                class="d-flex flex-column h-100 p-5 pb-3 text-white justify-content-center text-center text-shadow-1">
+                                <h2><i class="fa-brands fa-bootstrap fa-5x"></i></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br><br><br>
+
+                <div class="row align-items-md-stretch">
+                    <div class="col-md-6">
+                        <div class="h-100 p-5 text-white bg-dark rounded-3">
+                            <h2>Mood-Fi</h2>
+                            <p>Mood-Fi is the best place to relax and listen to a lo-fi live stream. It's a free
+                                software app with 30+ lo-fi live streams between 8 different lo-fi types. Take a break,
+                                relax and be mood, be Mood-Fi.</p>
+                            <a href="#" class="btn btn-outline-light"
+                                type="button">Download now!</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="h-100 p-5 bg-light border rounded-3">
+                            <h2>Steam website redesign</h2>
+                            <p>That's a website clone from Alexandre Misson's steam redesign layout. A mix between HTML
+                                and CSS to develop a website that brings life to the artist's redesign concept.</p>
+                            <a href="#"
+                                class="btn btn-outline-secondary" type="button">Check out the project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER SECTION -->
+
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <p class="col-md-4 mb-0 text-muted">&copy; 2022 dibimmbing</p>
+
+            <a href="/"
+                class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto text-decoration-none">
+                <img src="imgs/Owner/my-logo.jpg" class="d-block rounded mx-lg-auto img-fluid" alt="Bootstrap Themes"
+                    width="70" height="70" loading="lazy">
+            </a>
+
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="nav-item"><a href="#"
+                        class="nav-link px-2 text-muted"><i class="fa-brands fa-linkedin"></i></a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted"><i
+                            class="fa-brands fa-github"></i></a></li>
+                <li class="nav-item"><a href="#"
+                        class="nav-link px-2 text-muted"><i class="fa-brands fa-youtube"></i></a></li>
+            </ul>
+        </footer>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
+    <!-- <script src="/src/js/side-nav-home-page.js"></script> -->
+    <script src="main.js"></script>
+    </body>
+</html>

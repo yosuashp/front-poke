@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Raleway:wght@500;900&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+
+    background-color: #292929;
+}
+
+.details-side-nav-button {
+    display: none;
+}
+
+.side-nav-button {
+    display: none;
+}
+
+/* SIDE MENU */
+
+/* TOP CONTENT */
+.side-menu-container {
+    width: 400px;
+    height: 100%;
+
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #141A1F;
+}
+
+.generation-title {
+    font-family: "century Gothic";
+    font-weight: 700;
+    font-size: 40px;
+
+    margin-top: 200px;
+
+    align-self: center;
+
+    color: white;
+}
+
+.search-bar {
+    width: 80%;
+    height: 50px;
+
+    margin-top: 20px;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: #292929;
+}
+
+.fa-magnifying-glass {
+    color: #6E6B6F;
+}
+
+.search-bar-input {
+    width: 100%;
+
+    margin-left: 10px;
+
+    border: none;
+
+    color: white;
+    background: none;
+}
+
+.search-bar-input:focus {
+    outline: none;
+    background: none;
+}
+
+.side-menu-container::-webkit-scrollbar {
+    width: 7px;
+}
+
+.side-menu-container::-webkit-scrollbar-thumb {
+    background: #6E6B6F;
+    border-radius: 10px;
+}
+
+.side-menu-container::-webkit-scrollbar-thumb:hover {
+    background: #7f7d80;
+}
+
+
+
+/* BODY CONTENT */
+.pokedex {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+}
+
+.pokedex-container {
+    margin-top: 50px;
+
+    display: flow-root;
+
+    list-style: none;
+}
+
+.pokemon-card {
+    width: 100%;
+    height: 150px;
+
+    background-color: #141A1F;
+}
+
+.card-button {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    text-align: left;
+
+    border: none;
+
+    transition: 0.3s;
+
+    background-color: #ffff;
+}
+
+.card-button:hover {
+    transition: 0.3s;
+    background-color: #7f7d80;
+}
+
+.card-image {
+    width: 70px;
+    height: 70px;
+
+    margin-left: 20px;
+}
+
+.card-content {
+    margin-left: 20px;
+}
+
+.card-id {
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 15px;
+
+    margin-bottom: 10px;
+
+    color: #E9E9E9;
+}
+
+.card-name {
+    font-family: "Raleway";
+    font-weight: 900;
+    font-size: 20px;
+
+    text-transform: uppercase;
+
+    color: white;
+}
+
+.card-type {
+    display: flex;
+    flex-direction: row;
+}
+
+.type-icon {
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 10px;
+
+    border-radius: 50px;
+}
+
+.type-image {
+    width: 15px;
+    height: 15px;
+}
+
+.pokemon-card-divider {
+    border: 0;
+    border-top: 5px solid #231D23;
+}
+
+.side-nav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: #141A1F;
+    overflow-x: hidden;
+    transition: all .5s;
+    padding-top: 60px;
+}
+
+.header-exit {
+    position: absolute;
+    top: 25;
+    right: 25;
+    font-size: 36px;
+    margin-left: 50px;
+    color: white;
+}
+
+
+/* RESPONSIVITY */
+
+@media only screen and (max-width:960px) {
+    .side-menu-container {
+        width: 0;
+    }
+
+    .body {
+        background-color: red;
+    }
+
+    .side-nav-button {
+        display: block;
+        position: absolute;
+        top: 20;
+        left: 20;
+        font-size: 3vw;
+        color: white;
+    }
+
+    .details-side-nav-button {
+        display: flex;
+        align-self: flex-start;
+        top: 20;
+        left: 20;
+        font-size: 3vw;
+        color: white;
+    }
+
+    .generation-title {
+        font-size: 10vw;
+        margin-top: 10;
+    }
+
+}

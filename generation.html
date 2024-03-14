@@ -1,0 +1,343 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/src/css/generation-style.css">
+    <link rel="stylesheet" href="/src/css/pokemon-details-style.css">
+    <script src="https://kit.fontawesome.com/0fb81c7629.js" crossorigin="anonymous"></script>
+
+    <title>Pokedex</title>
+    <link rel="icon" type="image/x-icon" href="/imgs/logo/pokeball.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .pokemon-details-container {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        table td {
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        table td:first-child {
+            font-weight: bold;
+            width: 30%;
+        }
+
+        img#pokemon-image {
+            width: 100%;
+            margin-top: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Loading overlay styles */
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-spinner {
+            border: 5px solid #f3f3f3; /* Light grey */
+            border-top: 5px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="my-side-nav" class="side-nav">
+        <a id="close-side-nav" class="header-exit" onclick="CloseSideNav()"><i id="close-side-nav-object"
+                class="fa-solid fa-xmark"></i></a>
+        <h1 class="generation-title" id="responsive-gen-title"></h1>
+
+        <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search your favorite pokemon..." class="search-bar-input"
+                id="responsive-search">
+        </div>
+
+        <div class="pokedex">
+            <ul data-js="responsive-pokedex" class="pokedex-container">
+            </ul>
+        </div>
+    </div> -->
+
+    <div class="container">
+        <div class="search-container">
+            <input type="text" placeholder="Cari nama Pokemon..." id="responsive-search">
+        </div>
+        <div id="pokemon-details-content" class="pokemon-details-container" style="margin-left: 20px;"></div>
+    </div>
+    
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        const searchInput = document.getElementById('responsive-search');
+        const pokemonDetailsContent = document.getElementById('pokemon-details-content');
+        const loadingOverlay = document.getElementById('loading-overlay');
+    
+        searchInput.addEventListener('input', function () {
+            const searchText = this.value.trim();
+            if (searchText !== '') {
+                // Show loading overlay
+                loadingOverlay.style.display = 'flex';
+    
+                fetch(`http://35.227.40.37/pokemon/v1/search?name=${searchText}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Terjadi kesalahan saat mengambil data');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Hide loading overlay
+                        loadingOverlay.style.display = 'none';
+    
+                        // Display Pokemon details
+                        displayPokemonDetails(data);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // Hide loading overlay on error
+                        loadingOverlay.style.display = 'none';
+                    });
+            } else {
+                // Clear Pokemon details if search input is empty
+                pokemonDetailsContent.innerHTML = '';
+            }
+        });
+    
+        function displayPokemonDetails(data) {
+            if (data.length === 0) {
+                pokemonDetailsContent.innerHTML = '<p>No Pokemon found</p>';
+            } else {
+                const pokemon = data[0];
+                const html = `
+                    <h2>${pokemon.name}</h2>
+                    <img src="${pokemon.image}" alt="${pokemon.name}" id="pokemon-image">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Type</td>
+                                <td>${pokemon.type.join(', ')}</td>
+                            </tr>
+                            <tr>
+                                <td>Height</td>
+                                <td>${pokemon.height}</td>
+                            </tr>
+                            <tr>
+                                <td>Weight</td>
+                                <td>${pokemon.weight}</td>
+                            </tr>
+                            <tr>
+                                <td>Abilities</td>
+                                <td>${pokemon.abilities.join(', ')}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                `;
+                pokemonDetailsContent.innerHTML = html;
+            }
+        }
+    </script>
+
+    <!-- SIDE MENU SECTION -->
+
+    <!-- <div class="side-menu-container">
+        <h1 class="generation-title" id="gen-title"></h1>
+
+        <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search your favorite pokemon..." class="search-bar-input" id="search">
+        </div>
+
+        <div class="pokedex">
+            <ul data-js="pokedex" class="pokedex-container">
+            </ul>
+        </div>
+    </div> -->
+
+    <!-- POKEMON DETAILS SECTION -->
+    <section data-js="pokemon-details" class="pokemon-details-container" id="pokemon-details">
+        <div id="pokemon-details-content" class="main-container">
+            <table>
+                <tr>
+                    <td>ID:</td>
+                    <td id="pokemon-id"></td>
+
+                </tr>
+                <tr>
+                    <td>Name:</td>
+                    <td id="pokemon-name"></td>
+                </tr>
+                <tr>
+                    <td>Abilities:</td>
+                    <td id="pokemon-abilities"></td>
+                </tr>
+                <tr>
+                    <td>Attack:</td>
+                    <td id="pokemon-attack"></td>
+                </tr>
+                <tr>
+                    <td>Defense:</td>
+                    <td id="pokemon-defense"></td>
+                </tr>
+                <tr>
+                    <td>Height:</td>
+                    <td id="pokemon-height"></td>
+                </tr>
+                <tr>
+                    <td>Held Items:</td>
+                    <td id="pokemon-held-items"></td>
+                </tr>
+                <tr>
+                    <td>HP:</td>
+                    <td id="pokemon-hp"></td>
+                </tr>
+                <tr>
+                    <td>Special Attack:</td>
+                    <td id="pokemon-special-attack"></td>
+                </tr>
+                <tr>
+                    <td>Special Defense:</td>
+                    <td id="pokemon-special-defense"></td>
+                </tr>
+                <tr>
+                    <td>Speed:</td>
+                    <td id="pokemon-speed"></td>
+                </tr>
+                <tr>
+                    <td>Weight:</td>
+                    <td id="pokemon-weight"></td>
+                </tr>
+            </table>
+            <img src="#" alt="Pokemon" id="pokemon-image" style="width: 200px; height: 200px;">
+        </div>
+    </section>
+    
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+        
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+    
+    
+
+
+
+    <script src="main.js"></script>
+
+ 
+     <script>
+            const params = new URLSearchParams(window.location.search);
+            const pokemonName = params.get('name');
+
+            if (pokemonName !== null) {
+                fetch(`http://35.227.40.37/pokemon/v1/${pokemonName}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Invalid response from server');
+                        }
+                        return response.json();
+                    })
+        .then(data => {
+            // Set data into HTML elements
+            document.getElementById('pokemon-id').textContent = data.id;
+            document.getElementById('pokemon-name').textContent = data.name;
+            document.getElementById('pokemon-abilities').textContent = data.abilities.map(ability => ability.ability.name).join(', ');
+            document.getElementById('pokemon-attack').textContent = data.stats.find(stat => stat.stat.name === 'attack').base_stat;
+            document.getElementById('pokemon-defense').textContent = data.stats.find(stat => stat.stat.name === 'defense').base_stat;
+            document.getElementById('pokemon-height').textContent = data.height;
+            document.getElementById('pokemon-held-items').textContent = data.held_items.map(item => item.item.name).join(', ');
+            document.getElementById('pokemon-hp').textContent = data.stats.find(stat => stat.stat.name === 'hp').base_stat;
+            document.getElementById('pokemon-special-attack').textContent = data.stats.find(stat => stat.stat.name === 'special-attack').base_stat;
+            document.getElementById('pokemon-special-defense').textContent = data.stats.find(stat => stat.stat.name === 'special-defense').base_stat;
+            document.getElementById('pokemon-speed').textContent = data.stats.find(stat => stat.stat.name === 'speed').base_stat;
+            document.getElementById('pokemon-weight').textContent = data.weight;
+            document.getElementById('pokemon-image').src = data.sprites.front_default;
+        })
+        .catch(error => {
+            console.error('Error fetching Pokemon details:', error);
+        });
+} else {
+    console.error('Invalid Pokemon Name:', pokemonName);
+}
+    </script>
+    
+    
+
+</body>
+
+</html>
